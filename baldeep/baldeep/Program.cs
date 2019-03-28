@@ -14,9 +14,13 @@ namespace baldeep
             Download();
             Console.ReadLine();
         }
-        static void Download()
+        static async void Download()
         {
-            Network.Download();
+            HttpClient client = new HttpClient();
+            var data = await client.GetStringAsync("http://ibm.com");
+
+            Console.WriteLine(data);
+            List myList = new List();
         }
     }
     class Network
@@ -24,7 +28,7 @@ namespace baldeep
         static public Task Download()
         {
 
-            return Task.Run() => { Thread.Sleep(3000)});
+            return Task.Run(() => Thread.Sleep(3000));
         }
     }
 }
